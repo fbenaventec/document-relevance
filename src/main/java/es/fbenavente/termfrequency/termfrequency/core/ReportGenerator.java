@@ -4,8 +4,8 @@ import es.fbenavente.termfrequency.termfrequency.domain.TermFrequencyReport;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ReportBuilder {
-    public TermFrequencyReport build() {
+public class ReportGenerator {
+    public TermFrequencyReport generate() {
         return new TermFrequencyReport();
     }
 }
