@@ -1,4 +1,4 @@
-package es.fbenavente.termfrequency.termfrequency;
+package es.fbenavente.termfrequency.termfrequency.configuration;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

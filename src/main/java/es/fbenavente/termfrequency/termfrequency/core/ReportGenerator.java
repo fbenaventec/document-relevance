@@ -1,5 +1,7 @@
-package es.fbenavente.termfrequency.termfrequency;
+package es.fbenavente.termfrequency.termfrequency.core;
 
+import es.fbenavente.termfrequency.termfrequency.viewer.TermFrequencyViewer;
+import es.fbenavente.termfrequency.termfrequency.domain.TermFrequencyReport;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -9,11 +11,12 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @AllArgsConstructor
 public class ReportGenerator {
-    private final TermFrequencyConfiguration termFrequencyConfiguration;
+    private final TermFrequencyViewer termFrequencyViewer;
 
     @Scheduled(fixedRateString = "#{@termFrequencyConfiguration.getInterval().toMillis()}")
     public void generate() {
-        log.info("Print report");
+        TermFrequencyReport report = new TermFrequencyReport();
+        termFrequencyViewer.view(report);
     }
 }
 

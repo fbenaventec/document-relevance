@@ -1,5 +1,6 @@
 package es.fbenavente.termfrequency.termfrequency;
 
+import es.fbenavente.termfrequency.termfrequency.configuration.TermFrequencyConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
