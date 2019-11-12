@@ -5,12 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class TermFrequencyReport {
-    private List<DocumentRanking> documents;
+public class DocumentRanking {
+    private String name;
+    private BigDecimal ranking;
 }
