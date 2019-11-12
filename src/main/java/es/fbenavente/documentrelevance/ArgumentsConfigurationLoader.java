@@ -1,6 +1,6 @@
-package es.fbenavente.termfrequency.termfrequency;
+package es.fbenavente.documentrelevance;
 
-import es.fbenavente.termfrequency.termfrequency.configuration.TermFrequencyConfiguration;
+import es.fbenavente.documentrelevance.configuration.DocumentRelevanceConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Slf4j
 public class ArgumentsConfigurationLoader {
-    private final TermFrequencyConfiguration termFrequencyConfiguration;
+    private final DocumentRelevanceConfiguration documentRelevanceConfiguration;
 
     public void loadFromArgs(ApplicationArguments args) {
         // TODO implement to read params following specs:

@@ -1,6 +1,6 @@
-package es.fbenavente.termfrequency.termfrequency;
+package es.fbenavente.documentrelevance;
 
-import es.fbenavente.termfrequency.termfrequency.configuration.TermFrequencyConfiguration;
+import es.fbenavente.documentrelevance.configuration.DocumentRelevanceConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
@@ -13,12 +13,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Slf4j
 @AllArgsConstructor
 @EnableScheduling
-public class TermFrequencyApplication implements ApplicationRunner {
-	private final TermFrequencyConfiguration termFrequencyConfiguration;
+public class DocumentRelevanceApplication implements ApplicationRunner {
+	private final DocumentRelevanceConfiguration documentRelevanceConfiguration;
 	private final ArgumentsConfigurationLoader argumentsConfigurationLoader;
 
 	public static void main(String[] args) {
-		SpringApplication.run(TermFrequencyApplication.class, args);
+		SpringApplication.run(DocumentRelevanceApplication.class, args);
 	}
 
 	@Override

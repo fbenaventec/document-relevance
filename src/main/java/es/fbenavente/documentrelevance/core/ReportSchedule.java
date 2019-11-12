@@ -1,7 +1,7 @@
-package es.fbenavente.termfrequency.termfrequency.core;
+package es.fbenavente.documentrelevance.core;
 
-import es.fbenavente.termfrequency.termfrequency.viewer.ReportViewer;
-import es.fbenavente.termfrequency.termfrequency.domain.TermFrequencyReport;
+import es.fbenavente.documentrelevance.domain.DocumentRelevanceReport;
+import es.fbenavente.documentrelevance.viewer.ReportViewer;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,9 +14,9 @@ public class ReportSchedule {
     private final ReportGenerator reportGenerator;
     private final ReportViewer reportViewer;
 
-    @Scheduled(fixedRateString = "#{@termFrequencyConfiguration.getInterval().toMillis()}")
+    @Scheduled(fixedRateString = "#{@documentRelevanceConfiguration.getInterval().toMillis()}")
     public void generate() {
-        TermFrequencyReport report = reportGenerator.generate();
+        DocumentRelevanceReport report = reportGenerator.generate();
         reportViewer.view(report);
     }
 }

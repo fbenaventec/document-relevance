@@ -1,7 +1,7 @@
-package es.fbenavente.termfrequency.termfrequency.viewer;
+package es.fbenavente.documentrelevance.viewer;
 
-import es.fbenavente.termfrequency.termfrequency.domain.DocumentRanking;
-import es.fbenavente.termfrequency.termfrequency.domain.TermFrequencyReport;
+import es.fbenavente.documentrelevance.domain.DocumentRelevance;
+import es.fbenavente.documentrelevance.domain.DocumentRelevanceReport;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -24,7 +24,7 @@ public class ReportViewer {
         this.outputStream = outputStream;
     }
 
-    public void view(TermFrequencyReport report) {
+    public void view(DocumentRelevanceReport report) {
         if (report == null || CollectionUtils.isEmpty(report.getDocuments())) {
             outputStream.println("");
         } else {
@@ -32,8 +32,8 @@ public class ReportViewer {
         }
     }
 
-    private void printLine(DocumentRanking documentRanking) {
+    private void printLine(DocumentRelevance documentRelevance) {
         DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT, DecimalFormatSymbols.getInstance(ENGLISH));
-        outputStream.println(documentRanking.getName() + " " + decimalFormat.format(documentRanking.getRanking()));
+        outputStream.println(documentRelevance.getName() + " " + decimalFormat.format(documentRelevance.getRanking()));
     }
 }

@@ -1,4 +1,4 @@
-# term-frequency
+# document-relevance
 Tf/idf (term frequency / inverse document frequency) is an statistic that reflects the importance of a term T in a document D (or the relevance of a document for a searched term) relative to a document set S
 
 ## How to execute this program
@@ -11,7 +11,7 @@ mvn spring-boot:run -Dspring-boot.run.arguments="[ARGUMENTS]"
 ### Compile and execute with java
 ```shell script
 mvn clean install
-java -jar target/term-frequency-0.0.1-SNAPSHOT.jar [ARGUMENTS] 
+java -jar target/document-relevance-0.0.1-SNAPSHOT.jar [ARGUMENTS] 
 ```
 ### Available arguments
 
@@ -23,10 +23,10 @@ There are 4 arguments for this application:
 
 | Spring notation | Shell notation | Description | Default value |
 | --------------- | -------------- | ----------- | ------------- |
-| term-frequency.path | D | The directory where the documents will be written. | ./documents |
-| term-frequency.terms | TT | The terms to be analyzed. | |
-| term-frequency.resultsToShow | N | The count of top results to show. | 5 |
-| term-frequency.interval | P | The period to report the top results. | 1s |
+| document-relevance.path | D | The directory where the documents will be written. | ./documents |
+| document-relevance.terms | TT | The terms to be analyzed. | |
+| document-relevance.resultsToShow | N | The count of top results to show. | 5 |
+| document-relevance.interval | P | The period to report the top results. | 1s |
 
 For set period use this format: [value][unit]. The supported units are:
  - ns: nanoseconds 

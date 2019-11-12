@@ -1,7 +1,7 @@
-package es.fbenavente.termfrequency.termfrequency.viewer;
+package es.fbenavente.documentrelevance.viewer;
 
-import es.fbenavente.termfrequency.termfrequency.domain.DocumentRanking;
-import es.fbenavente.termfrequency.termfrequency.domain.TermFrequencyReport;
+import es.fbenavente.documentrelevance.domain.DocumentRelevance;
+import es.fbenavente.documentrelevance.domain.DocumentRelevanceReport;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InOrder;
@@ -25,7 +25,7 @@ class ReportViewerTest {
 
     @Test
     public void given_a_empty_report_should_be_print_only_header_and_empty_results() {
-        TermFrequencyReport report = new TermFrequencyReport();
+        DocumentRelevanceReport report = new DocumentRelevanceReport();
 
         viewer.view(report);
 
@@ -34,10 +34,10 @@ class ReportViewerTest {
 
     @Test
     public void given_a_report_expect_a_line_with_name_and_ranking_for_each_document() {
-        TermFrequencyReport report = TermFrequencyReport.builder()
+        DocumentRelevanceReport report = DocumentRelevanceReport.builder()
                 .documents(Arrays.asList(
-                        DocumentRanking.builder().name("First document.txt").ranking(new BigDecimal("0.8")).build(),
-                        DocumentRanking.builder().name("Second document.txt").ranking(new BigDecimal("0.33")).build()
+                        DocumentRelevance.builder().name("First document.txt").ranking(new BigDecimal("0.8")).build(),
+                        DocumentRelevance.builder().name("Second document.txt").ranking(new BigDecimal("0.33")).build()
                 ))
                 .build();
 

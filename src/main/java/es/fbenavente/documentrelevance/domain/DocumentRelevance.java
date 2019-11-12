@@ -1,4 +1,4 @@
-package es.fbenavente.termfrequency.termfrequency.domain;
+package es.fbenavente.documentrelevance.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,9 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DocumentRanking {
+public class DocumentRelevance {
     private String name;
     private BigDecimal ranking;
+    private BigDecimal inverseDocumentFrequency;
+    private BigDecimal termFrequency;
 }

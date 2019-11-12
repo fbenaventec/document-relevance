@@ -1,4 +1,4 @@
-package es.fbenavente.termfrequency.termfrequency.domain;
+package es.fbenavente.documentrelevance.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TermFrequencyReport {
-    private List<DocumentRanking> documents;
+public class DocumentRelevanceReport {
+    private List<DocumentRelevance> documents;
 }
