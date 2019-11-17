@@ -14,6 +14,4 @@ import java.math.BigDecimal;
 public class DocumentRelevance {
     private String name;
     private BigDecimal ranking;
-    private BigDecimal inverseDocumentFrequency;
-    private BigDecimal termFrequency;
 }
