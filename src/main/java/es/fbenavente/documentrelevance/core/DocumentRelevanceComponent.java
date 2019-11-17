@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
-public class ReportGenerator {
+public class DocumentRelevanceComponent {
     private final DocumentReader documentReader;
     private final DocumentRelevanceConfiguration documentRelevanceConfiguration;
     private final TermFrequencyComponent termFrequencyComponent;

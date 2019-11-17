@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @AllArgsConstructor
 public class ReportSchedule {
-    private final ReportGenerator reportGenerator;
+    private final DocumentRelevanceComponent documentRelevanceComponent;
     private final ReportViewer reportViewer;
 
     @Scheduled(fixedRateString = "#{@documentRelevanceConfiguration.getInterval().toMillis()}")
     public void generate() {
-        DocumentRelevanceReport report = reportGenerator.generate();
+        DocumentRelevanceReport report = documentRelevanceComponent.generate();
         reportViewer.view(report);
     }
 }
