@@ -7,6 +7,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 @Component
 public class InverseDocumentFrequencyComponent {
@@ -22,6 +23,15 @@ public class InverseDocumentFrequencyComponent {
     }
 
     private Double calculate(List<Document> documents, String term) {
+        long documentsWhereTermAppears = documents.stream().filter(isTermPresent(term)).count();
+        if (documentsWhereTermAppears == 0) {
+            return 1d;
+        }
         return 0d;
+    }
+
+    private Predicate<Document> isTermPresent(String term) {
+        return document -> document.getTermFrequency() != null
+                && document.getTermFrequency().getOrDefault(term, 0) > 0;
     }
 }
