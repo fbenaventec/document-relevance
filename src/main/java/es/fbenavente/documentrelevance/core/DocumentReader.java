@@ -19,10 +19,14 @@ public class DocumentReader {
     public List<Document> readAll() {
         List<File> files = loadFiles();
         return files.stream()
-                .map(file -> Document.builder()
-                        .name(file.getName())
-                        .build())
+                .map(this::readFile)
                 .collect(Collectors.toList());
+    }
+
+    private Document readFile(File file) {
+        return Document.builder()
+                .name(file.getName())
+                .build();
     }
 
     private List<File> loadFiles() {
