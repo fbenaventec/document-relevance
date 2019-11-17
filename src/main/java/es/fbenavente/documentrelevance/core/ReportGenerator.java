@@ -1,16 +1,12 @@
 package es.fbenavente.documentrelevance.core;
 
-import es.fbenavente.documentrelevance.configuration.DocumentRelevanceConfiguration;
 import es.fbenavente.documentrelevance.domain.Document;
 import es.fbenavente.documentrelevance.domain.DocumentRelevance;
 import es.fbenavente.documentrelevance.domain.DocumentRelevanceReport;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
