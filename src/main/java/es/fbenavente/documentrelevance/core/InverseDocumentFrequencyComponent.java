@@ -23,11 +23,11 @@ public class InverseDocumentFrequencyComponent {
     }
 
     private Double calculate(List<Document> documents, String term) {
-        long documentsWhereTermAppears = documents.stream().filter(isTermPresent(term)).count();
+        Long documentsWhereTermAppears = documents.stream().filter(isTermPresent(term)).count();
         if (documentsWhereTermAppears == 0) {
             return 1d;
         }
-        return 0d;
+        return Math.log10(documents.size() / documentsWhereTermAppears.doubleValue());
     }
 
     private Predicate<Document> isTermPresent(String term) {
