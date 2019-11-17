@@ -24,12 +24,14 @@ class ReportViewerTest {
     private ReportViewer viewer;
 
     @Test
-    public void given_a_empty_report_should_be_print_only_header_and_empty_results() {
+    public void given_a_empty_report_should_be_print_only_header_and_empty_message() {
         DocumentRelevanceReport report = new DocumentRelevanceReport();
 
         viewer.view(report);
 
-        Mockito.verify(outputStream).println("");
+        InOrder inOrder = Mockito.inOrder(outputStream);
+        inOrder.verify(outputStream).println("Document relevance report:");
+        inOrder.verify(outputStream).println("Directory is empty");
     }
 
     @Test
@@ -44,6 +46,7 @@ class ReportViewerTest {
         viewer.view(report);
 
         InOrder inOrder = Mockito.inOrder(outputStream);
+        inOrder.verify(outputStream).println("Document relevance report:");
         inOrder.verify(outputStream).println("First document.txt 0.80");
         inOrder.verify(outputStream).println("Second document.txt 0.33");
     }

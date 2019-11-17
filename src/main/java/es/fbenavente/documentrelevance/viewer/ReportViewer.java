@@ -14,6 +14,8 @@ import static java.util.Locale.ENGLISH;
 @Component
 public class ReportViewer {
     private static final String DECIMAL_FORMAT = "0.00";
+    private static final String HEADER = "Document relevance report:";
+    private static final String EMPTY_MESSAGE = "Directory is empty";
     private final PrintStream outputStream;
 
     public ReportViewer() {
@@ -25,11 +27,16 @@ public class ReportViewer {
     }
 
     public void view(DocumentRelevanceReport report) {
+        printHeader();
         if (report == null || CollectionUtils.isEmpty(report.getDocuments())) {
-            outputStream.println("");
+            outputStream.println(EMPTY_MESSAGE);
         } else {
             report.getDocuments().forEach(this::printLine);
         }
+    }
+
+    private void printHeader() {
+        outputStream.println(HEADER);
     }
 
     private void printLine(DocumentRelevance documentRelevance) {
