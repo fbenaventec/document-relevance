@@ -8,6 +8,6 @@ import java.io.File;
 public class TermFrequencyComponent {
 
     public double getTermFrequency(File file) {
-        return Math.random();
+        return 1.0d;
     }
 }

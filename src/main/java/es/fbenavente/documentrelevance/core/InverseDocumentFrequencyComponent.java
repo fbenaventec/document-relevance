@@ -7,6 +7,6 @@ import java.io.File;
 @Component
 public class InverseDocumentFrequencyComponent {
     public double getInverseDocumentFrequency(File file) {
-        return Math.random();
+        return 1.0d;
     }
 }
