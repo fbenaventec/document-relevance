@@ -38,8 +38,8 @@ class ReportViewerTest {
     public void given_a_report_expect_a_line_with_name_and_ranking_for_each_document() {
         DocumentRelevanceReport report = DocumentRelevanceReport.builder()
                 .documents(Arrays.asList(
-                        DocumentRelevance.builder().name("First document.txt").ranking(new BigDecimal("0.8")).build(),
-                        DocumentRelevance.builder().name("Second document.txt").ranking(new BigDecimal("0.33")).build()
+                        DocumentRelevance.builder().name("First document.txt").ranking(0.8d).build(),
+                        DocumentRelevance.builder().name("Second document.txt").ranking(0.33d).build()
                 ))
                 .build();
 
