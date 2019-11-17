@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.Duration;
+import java.util.List;
 
 @Configuration
 @ConfigurationProperties("document-relevance")
@@ -12,6 +13,6 @@ import java.time.Duration;
 public class DocumentRelevanceConfiguration {
     private String directory;
     private Integer resultsToShow;
-    private String [] terms;
+    private List<String> terms;
     private Duration interval;
 }
