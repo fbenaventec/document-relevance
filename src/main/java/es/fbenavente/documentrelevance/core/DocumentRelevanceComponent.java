@@ -22,17 +22,18 @@ public class DocumentRelevanceComponent {
 
     public DocumentRelevanceReport generate() {
         List<Document> documents = documentReader.readAll();
+        List<String> terms = documentRelevanceConfiguration.getTerms();
         Map<String, Double> inverseDocumentFrequencyByTerm
-                = inverseDocumentFrequencyComponent.calculateForAllTerms(documents, documentRelevanceConfiguration.getTerms());
+                = inverseDocumentFrequencyComponent.calculateForAllTerms(documents, terms);
         Map<String, Map<String, Double>> termFrequenciesByDocument
-                = termFrequencyComponent.calculateForAllDocuments(documents, documentRelevanceConfiguration.getTerms());
+                = termFrequencyComponent.calculateForAllDocuments(documents, terms);
         List<DocumentRelevance> documentsRelevance = new ArrayList<>();
         for (Document document: documents) {
             double ranking = 0d;
-            double inverseDocumentFrequency = inverseDocumentFrequencyByTerm.getOrDefault(document.getName(), 0d);
             Map<String, Double> termFrequenciesByTerm
                     = termFrequenciesByDocument.getOrDefault(document.getName(), new HashMap<>());
-            for (String term: documentRelevanceConfiguration.getTerms()) {
+            for (String term: terms) {
+                double inverseDocumentFrequency = inverseDocumentFrequencyByTerm.getOrDefault(term, 0d);
                 double termFrequency = termFrequenciesByTerm.getOrDefault(term, 0d);
                 ranking += termFrequency * inverseDocumentFrequency;
             }
