@@ -25,7 +25,7 @@ public class DocumentRelevanceComponent {
         Map<String, Double> inverseDocumentFrequencyByTerm
                 = inverseDocumentFrequencyComponent.calculateForAllTerms(documents, documentRelevanceConfiguration.getTerms());
         Map<String, Map<String, Double>> termFrequenciesByDocument
-                = termFrequencyComponent.calculate(documents, documentRelevanceConfiguration.getTerms());
+                = termFrequencyComponent.calculateForAllDocuments(documents, documentRelevanceConfiguration.getTerms());
         List<DocumentRelevance> documentsRelevance = new ArrayList<>();
         for (Document document: documents) {
             double ranking = 0d;

@@ -11,7 +11,7 @@ import java.util.*;
 
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.number.IsCloseTo.closeTo;
 
 @ExtendWith(MockitoExtension.class)
@@ -48,7 +48,7 @@ class InverseDocumentFrequencyComponentTest {
         Map<String, Double> result = inverseDocumentFrequencyComponent.calculateForAllTerms(documents, terms);
 
         assertThat(result.keySet(), hasItems(TERM1, TERM2));
-        assertThat(result.values(), contains(0d, 0d));
+        assertThat(result.values(), containsInAnyOrder(0d, 0d));
     }
 
     @Test
@@ -66,7 +66,7 @@ class InverseDocumentFrequencyComponentTest {
         Map<String, Double> result = inverseDocumentFrequencyComponent.calculateForAllTerms(documents, terms);
 
         assertThat(result.keySet(), hasItems(TERM1, TERM2));
-        assertThat(result.values(), contains(1d, 1d));
+        assertThat(result.values(), containsInAnyOrder(1d, 1d));
     }
 
     @Test
@@ -92,7 +92,7 @@ class InverseDocumentFrequencyComponentTest {
         Map<String, Double> result = inverseDocumentFrequencyComponent.calculateForAllTerms(documents, terms);
 
         assertThat(result.keySet(), hasItems(TERM1, TERM2));
-        assertThat(result.values(), contains(
+        assertThat(result.values(), containsInAnyOrder(
                 Arrays.asList(
                         closeTo(0.301029996d, 0.0001d),
                         closeTo(0.301029996d, 0.0001d)
