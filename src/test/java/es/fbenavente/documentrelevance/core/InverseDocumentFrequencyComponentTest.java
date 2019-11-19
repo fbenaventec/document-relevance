@@ -1,23 +1,22 @@
 package es.fbenavente.documentrelevance.core;
 
 import es.fbenavente.documentrelevance.domain.Document;
-import org.hamcrest.number.IsCloseTo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
-import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.number.IsCloseTo.closeTo;
 
 @ExtendWith(MockitoExtension.class)
 class InverseDocumentFrequencyComponentTest {
 
-    private static final Random random = new Random();
     private static final String DOCUMENT_NAME1 = "name1";
     private static final String DOCUMENT_NAME2 = "name2";
     private static final String TERM1 = "term1";
@@ -36,19 +35,17 @@ class InverseDocumentFrequencyComponentTest {
                                        }}
                         ).build(),
                 Document.builder()
-                        .name(DOCUMENT_NAME1).words(10)
+                        .name(DOCUMENT_NAME2).words(10)
                         .termFrequency(new HashMap<String, Integer>() {{
                                            put(TERM1, 3);
                                            put(TERM2, 4);
                                        }}
                         ).build()
         );
-        List<String> terms = Arrays.asList(TERM1, TERM2);
 
-        Map<String, Double> result = inverseDocumentFrequencyComponent.calculateForAllTerms(documents, terms);
+        double result = inverseDocumentFrequencyComponent.calculate(documents, TERM1);
 
-        assertThat(result.keySet(), hasItems(TERM1, TERM2));
-        assertThat(result.values(), containsInAnyOrder(0d, 0d));
+        assertThat(result, equalTo(0d));
     }
 
     @Test
@@ -58,15 +55,13 @@ class InverseDocumentFrequencyComponentTest {
                         .name(DOCUMENT_NAME1).words(10)
                         .termFrequency(new HashMap<>()).build(),
                 Document.builder()
-                        .name(DOCUMENT_NAME1).words(10)
+                        .name(DOCUMENT_NAME2).words(10)
                         .termFrequency(new HashMap<>()).build()
         );
-        List<String> terms = Arrays.asList(TERM1, TERM2);
 
-        Map<String, Double> result = inverseDocumentFrequencyComponent.calculateForAllTerms(documents, terms);
+        double result = inverseDocumentFrequencyComponent.calculate(documents, TERM1);
 
-        assertThat(result.keySet(), hasItems(TERM1, TERM2));
-        assertThat(result.values(), containsInAnyOrder(1d, 1d));
+        assertThat(result, equalTo(1d));
     }
 
     @Test
@@ -80,23 +75,16 @@ class InverseDocumentFrequencyComponentTest {
                                        }}
                         ).build(),
                 Document.builder()
-                        .name(DOCUMENT_NAME1).words(10)
+                        .name(DOCUMENT_NAME2).words(10)
                         .termFrequency(new HashMap<String, Integer>() {{
                                            put(TERM1, 1);
                                            put(TERM2, 0);
                                        }}
                         ).build()
         );
-        List<String> terms = Arrays.asList(TERM1, TERM2);
 
-        Map<String, Double> result = inverseDocumentFrequencyComponent.calculateForAllTerms(documents, terms);
+        double result = inverseDocumentFrequencyComponent.calculate(documents, TERM1);
 
-        assertThat(result.keySet(), hasItems(TERM1, TERM2));
-        assertThat(result.values(), containsInAnyOrder(
-                Arrays.asList(
-                        closeTo(0.301029996d, 0.0001d),
-                        closeTo(0.301029996d, 0.0001d)
-                )
-        ));
+        assertThat(result, closeTo(0.301029996d, 0.0001d));
     }
 }

@@ -8,9 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import static java.util.Comparator.comparing;
 
 @Component
 @RequiredArgsConstructor
@@ -23,18 +23,12 @@ public class DocumentRelevanceComponent {
     public DocumentRelevanceReport generate() {
         List<Document> documents = documentReader.readAll();
         List<String> terms = documentRelevanceConfiguration.getTerms();
-        Map<String, Double> inverseDocumentFrequencyByTerm
-                = inverseDocumentFrequencyComponent.calculateForAllTerms(documents, terms);
-        Map<String, Map<String, Double>> termFrequenciesByDocument
-                = termFrequencyComponent.calculateForAllDocuments(documents, terms);
         List<DocumentRelevance> documentsRelevance = new ArrayList<>();
         for (Document document: documents) {
             double ranking = 0d;
-            Map<String, Double> termFrequenciesByTerm
-                    = termFrequenciesByDocument.getOrDefault(document.getName(), new HashMap<>());
             for (String term: terms) {
-                double inverseDocumentFrequency = inverseDocumentFrequencyByTerm.getOrDefault(term, 0d);
-                double termFrequency = termFrequenciesByTerm.getOrDefault(term, 0d);
+                double inverseDocumentFrequency = inverseDocumentFrequencyComponent.calculate(documents, term);
+                double termFrequency = termFrequencyComponent.calculate(document, term);
                 ranking += termFrequency * inverseDocumentFrequency;
             }
             documentsRelevance.add(
@@ -44,6 +38,15 @@ public class DocumentRelevanceComponent {
                             .build()
             );
         }
+        orderByRanking(documentsRelevance);
+        return buildReport(documentsRelevance);
+    }
+
+    private void orderByRanking(List<DocumentRelevance> documentsRelevance) {
+        documentsRelevance.sort(comparing(DocumentRelevance::getRanking).reversed());
+    }
+
+    private DocumentRelevanceReport buildReport(List<DocumentRelevance> documentsRelevance) {
         return DocumentRelevanceReport.builder().documents(documentsRelevance).build();
     }
 }
