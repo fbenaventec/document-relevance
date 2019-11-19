@@ -41,7 +41,6 @@ public class DocumentReader {
                     .words(words.size())
                     .termFrequency(termFrequency)
                     .build();
-            log.info("document={}", document);
             return Optional.of(document);
         } catch (IOException e) {
             log.warn("Unable to read file; ignoring|file={}", file.getName(), e);
