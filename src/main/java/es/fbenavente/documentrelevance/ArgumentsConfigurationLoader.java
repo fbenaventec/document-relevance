@@ -15,6 +15,7 @@ import java.util.List;
 public class ArgumentsConfigurationLoader {
     private static final String DIRECTORY_PARAM = "-d";
     private static final String TERMS_PARAM = "-tt";
+    private static final String RESULTS_TO_SHOW_PARAM = "-n";
     private final DocumentRelevanceConfiguration documentRelevanceConfiguration;
 
     public void loadFromArgs(ApplicationArguments args) {
@@ -30,12 +31,12 @@ public class ArgumentsConfigurationLoader {
                 String[] terms = value.split(" ");
                 documentRelevanceConfiguration.setTerms(Arrays.asList(terms));
                 i++;
+            } else if (arg.equalsIgnoreCase(RESULTS_TO_SHOW_PARAM)) {
+                Integer resultsToShow = Integer.valueOf(value);
+                documentRelevanceConfiguration.setResultsToShow(resultsToShow);
+                i++;
             }
         }
-        // TODO implement to read params following specs:
-        // -d|-D for directory to scan documents
-        // -tt|-TT for terms
         // -p|-P for interval
-        // -n|-N for elements to show
     }
 }

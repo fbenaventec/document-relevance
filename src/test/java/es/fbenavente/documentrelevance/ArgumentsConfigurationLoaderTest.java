@@ -57,4 +57,22 @@ class ArgumentsConfigurationLoaderTest {
 
         verify(documentRelevanceConfiguration).setTerms(Arrays.asList("term1", "term2"));
     }
+
+    @Test
+    void results_to_show_should_be_changed_when_receive_n_param() {
+        ApplicationArguments args = new DefaultApplicationArguments("-n","1");
+
+        argumentsConfigurationLoader.loadFromArgs(args);
+
+        verify(documentRelevanceConfiguration).setResultsToShow(1);
+    }
+
+    @Test
+    void results_to_show_should_be_changed_when_receive_N_param() {
+        ApplicationArguments args = new DefaultApplicationArguments("-N","1");
+
+        argumentsConfigurationLoader.loadFromArgs(args);
+
+        verify(documentRelevanceConfiguration).setResultsToShow(1);
+    }
 }
