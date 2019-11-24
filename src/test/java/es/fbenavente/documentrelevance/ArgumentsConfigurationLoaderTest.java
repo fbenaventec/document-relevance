@@ -80,15 +80,6 @@ class ArgumentsConfigurationLoaderTest {
     }
 
     @Test
-    void interval_should_be_changed_when_receive_P_param() throws InvalidArgumentException {
-        ApplicationArguments args = new DefaultApplicationArguments("-P","1");
-
-        argumentsConfigurationLoader.loadFromArgs(args);
-
-        verify(documentRelevanceConfiguration).setInterval(Duration.ofMillis(1));
-    }
-
-    @Test
     void interval_should_be_changed_when_receive_P_param_accepting_seconds() throws InvalidArgumentException {
         ApplicationArguments args = new DefaultApplicationArguments("-P","1s");
 
