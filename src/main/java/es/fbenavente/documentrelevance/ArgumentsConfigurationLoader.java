@@ -6,13 +6,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Component
 @AllArgsConstructor
 @Slf4j
 public class ArgumentsConfigurationLoader {
-    public static final String DIRECTORY_PARAM = "-d";
+    private static final String DIRECTORY_PARAM = "-d";
+    private static final String TERMS_PARAM = "-tt";
     private final DocumentRelevanceConfiguration documentRelevanceConfiguration;
 
     public void loadFromArgs(ApplicationArguments args) {
@@ -23,6 +25,11 @@ public class ArgumentsConfigurationLoader {
             String value = rawArgs.get(i + 1);
             if (arg.equalsIgnoreCase(DIRECTORY_PARAM)) {
                 documentRelevanceConfiguration.setDirectory(value);
+                i++;
+            } else if (arg.equalsIgnoreCase(TERMS_PARAM)) {
+                String[] terms = value.split(" ");
+                documentRelevanceConfiguration.setTerms(Arrays.asList(terms));
+                i++;
             }
         }
         // TODO implement to read params following specs:
