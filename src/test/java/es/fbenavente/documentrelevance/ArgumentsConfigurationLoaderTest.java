@@ -81,29 +81,29 @@ class ArgumentsConfigurationLoaderTest {
 
     @Test
     void interval_should_be_changed_when_receive_P_param_accepting_seconds() throws InvalidArgumentException {
-        ApplicationArguments args = new DefaultApplicationArguments("-P","1s");
+        ApplicationArguments args = new DefaultApplicationArguments("-P","110s");
 
         argumentsConfigurationLoader.loadFromArgs(args);
 
-        verify(documentRelevanceConfiguration).setInterval(Duration.ofSeconds(1));
+        verify(documentRelevanceConfiguration).setInterval(Duration.ofSeconds(110));
     }
 
     @Test
     void interval_should_be_changed_when_receive_P_param_accepting_minutes() throws InvalidArgumentException {
-        ApplicationArguments args = new DefaultApplicationArguments("-P","1m");
+        ApplicationArguments args = new DefaultApplicationArguments("-P","33m");
 
         argumentsConfigurationLoader.loadFromArgs(args);
 
-        verify(documentRelevanceConfiguration).setInterval(Duration.ofMinutes(1));
+        verify(documentRelevanceConfiguration).setInterval(Duration.ofMinutes(33));
     }
 
     @Test
     void interval_should_be_changed_when_receive_P_param_accepting_hours() throws InvalidArgumentException {
-        ApplicationArguments args = new DefaultApplicationArguments("-P","1h");
+        ApplicationArguments args = new DefaultApplicationArguments("-P","11h");
 
         argumentsConfigurationLoader.loadFromArgs(args);
 
-        verify(documentRelevanceConfiguration).setInterval(Duration.ofHours(1));
+        verify(documentRelevanceConfiguration).setInterval(Duration.ofHours(11));
     }
 
     @Test

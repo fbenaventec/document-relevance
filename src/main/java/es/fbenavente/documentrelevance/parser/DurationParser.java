@@ -17,8 +17,12 @@ public class DurationParser {
     private static final String HOUR_UNIT = "h";
     private static final String DAY_UNIT = "d";
     private static final Pattern DURATION_PATTER = Pattern.compile(
-            "(?<amount>\\d)+(?<unit>[" + DAY_UNIT + "|" + HOUR_UNIT + "|" + MINUTE_UNIT + "|" +SECOND_UNIT + "])",
+            "(?<amount>\\d+)(?<unit>[" + DAY_UNIT + "|" + HOUR_UNIT + "|" + MINUTE_UNIT + "|" +SECOND_UNIT + "])",
             Pattern.CASE_INSENSITIVE);
+
+    private DurationParser() {
+
+    }
 
     public static Duration parseDuration(String value) throws InvalidArgumentException {
         Matcher matcher = DURATION_PATTER.matcher(value);
