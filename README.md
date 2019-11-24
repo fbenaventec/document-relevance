@@ -29,9 +29,6 @@ There are 4 arguments for this application:
 | document-relevance.interval | P | The period to report the top results. | 1s |
 
 For set period use this format: [value][unit]. The supported units are:
- - ns: nanoseconds 
- - us: microseconds
- - ms: milliseconds
  - s: seconds
  - m: minutes
  - h: hours
