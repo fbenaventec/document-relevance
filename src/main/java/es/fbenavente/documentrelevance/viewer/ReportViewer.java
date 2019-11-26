@@ -18,6 +18,7 @@ public class ReportViewer {
     private static final String EMPTY_MESSAGE = "Directory is empty";
     private final PrintStream outputStream;
 
+    @SuppressWarnings("squid:S106")
     public ReportViewer() {
         this(System.out);
     }

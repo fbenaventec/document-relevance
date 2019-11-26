@@ -65,13 +65,20 @@ public class DocumentReader {
     }
 
     private List<String> extractWordsFromFile(File file) throws IOException {
-        Stream<String> lines = Files.lines(file.toPath());
-        String content = lines.collect(Collectors.joining("\n"));
-        Pattern pattern = Pattern.compile("\\w+");
-        Matcher matcher = pattern.matcher(content);
+        Stream<String> lines = null;
         List<String> words = new ArrayList<>();
-        while (matcher.find()) {
-            words.add(matcher.group());
+        try {
+            lines = Files.lines(file.toPath());
+            String content = lines.collect(Collectors.joining("\n"));
+            Pattern pattern = Pattern.compile("\\w+");
+            Matcher matcher = pattern.matcher(content);
+            while (matcher.find()) {
+                words.add(matcher.group());
+            }
+        } finally {
+            if (lines != null) {
+                lines.close();
+            }
         }
         return words;
     }
